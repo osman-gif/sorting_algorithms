@@ -13,7 +13,7 @@ void selection_sort(int *array, size_t size)
 	size_t __attribute__((unused)) i, j;
 	int small, tmp;
 
-	if (size > 2)
+	if (size >= 2)
 	{
 		for (i = 0; i < size - 1; i++)
 		{
