@@ -12,19 +12,22 @@ void bubble_sort(int *array, size_t size)
 	size_t __attribute__((unused))i, j;
 	int swapped;
 
-	swapped = 1;
-	for (i = 0; i < size - 1; i++)
+	if (size >= 2)
 	{
-		if (swapped == 1)
+		swapped = 1;
+		for (i = 0; i < size - 1; i++)
 		{
-			swapped = 0;
-			for (j = 0; j < size - (i + 1); j++)
+			if (swapped == 1)
 			{
-				if (array[j] > array[j + 1])
+				swapped = 0;
+				for (j = 0; j < size - (i + 1); j++)
 				{
-					swap(array, j);
-					swapped = 1;
-					print_array(array, size);
+					if (array[j] > array[j + 1])
+					{
+						swap(array, j);
+						swapped = 1;
+						print_array(array, size);
+					}
 				}
 			}
 		}
