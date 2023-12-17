@@ -1,0 +1,1 @@
+This is the ALX-SE program, in this project (sorting_algorithms), I will be building some function that sorts an array or a list of data, by implementing sorting algorithms, such as bubble, selection insertion sorts
