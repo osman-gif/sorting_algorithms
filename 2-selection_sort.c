@@ -13,25 +13,28 @@ void selection_sort(int *array, size_t size)
 	size_t __attribute__((unused)) i, j;
 	int small, tmp;
 
-	for (i = 0; i < size - 1; i++)
+	if (size > 2)
 	{
-		small = i;
-
-		for (j = i + 1; j < size; j++)
+		for (i = 0; i < size - 1; i++)
 		{
-			if (array[small] > array[j])
+			small = i;
+
+			for (j = i + 1; j < size; j++)
 			{
-				small = j;
+				if (array[small] > array[j])
+				{
+					small = j;
+				}
 			}
-		}
 
-		if (array[i] > array[small])
-		{
-			tmp = array[i];
-			array[i] = array[small];
-			array[small] = tmp;
+			if (array[i] > array[small])
+			{
+				tmp = array[i];
+				array[i] = array[small];
+				array[small] = tmp;
 
-			print_array(array, size);
+				print_array(array, size);
+			}
 		}
 	}
 }
