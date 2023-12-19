@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -18,6 +19,10 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
+void swapp(int *array, size_t a, size_t b);
+int lomuto_partition(int *array, size_t low, size_t high, size_t size);
+void recursive_partition(int *array, size_t low, size_t high, size_t size);
+void quick_sort(int *array, size_t size);
 void swap(int *array, int idx);
 void bubble_sort(int *array, size_t size);
 void print_list(const listint_t *list);
