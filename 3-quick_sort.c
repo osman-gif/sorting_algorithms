@@ -6,15 +6,17 @@
  * @array: The array
  * @a: An index of the array
  * @b: An index of the array
+ * @size: Size of the array
  */
 
-void swapp(int *array, size_t a, size_t b)
+void swapp(int *array, size_t size, size_t a, size_t b)
 {
 	int temp;
 
 	temp = array[a];
 	array[a] = array[b];
 	array[b] = temp;
+	print_array(array, size);
 }
 
 /**
@@ -26,29 +28,36 @@ void swapp(int *array, size_t a, size_t b)
  * Return: Returns the index of the pivot
  */
 
-int lomuto_partition(int *array, size_t low, size_t high, size_t size)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot;
-	size_t j, i;
+	int j, i;
 
 	pivot = array[high];
-	/* printf("pivot: %d, hight %lu, low %lu\n", pivot, high, low); */
-	i = low - (size_t)1;
+	/* printf("pivot: %d, hight %d, low %d\n", pivot, high, low); */
+	i = low - 1;
 
-	for (j = low; j <= high - (size_t)1; j++)
+	for (j = low; j < high; j++)
 	{
+		/* printf("j = %d, i = %d, low = %d\n", j, i, (int)low - 1); */
 		/* printf("for loop\n"); */
 
 		if (array[j] < pivot)
 		{
 			i++;
-			/* print_array(array, size); */
-			swapp(array, i, j);
+			if (i != j)
+			{
+				swapp(array, size, i, j);
+			}
 		}
 	}
-	print_array(array, size);
-	swapp(array, i, j);
-	return (i + (size_t)1);
+
+	if (array[i + 1] > pivot)
+	{
+		swapp(array, size, i + 1, high);
+	}
+
+	return (i + 1);
 }
 
 /**
@@ -60,15 +69,15 @@ int lomuto_partition(int *array, size_t low, size_t high, size_t size)
  * @size: size of the array
  */
 
-void recursive_partition(int *array, size_t low, size_t high, size_t size)
+void recursive_partition(int *array, int low, int high, size_t size)
 {
-	size_t __attribute__((unused))pivot_index;
+	int __attribute__((unused))pivot_index;
 
 	if (low < high)
 	{
 		pivot_index = lomuto_partition(array, low, high, size);
-		recursive_partition(array, low, pivot_index - (size_t)1, size);
-		recursive_partition(array, pivot_index + (size_t)1, high, size);
+		recursive_partition(array, low, pivot_index - 1, size);
+		recursive_partition(array, pivot_index + 1, high, size);
 	}
 }
 
@@ -81,5 +90,5 @@ void recursive_partition(int *array, size_t low, size_t high, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	recursive_partition(array, 0, size - 1, size);
+	recursive_partition(array, 0, (int)size - 1, size);
 }
