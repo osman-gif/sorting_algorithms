@@ -19,7 +19,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-void swapp(int *array,size_t size, size_t a, size_t b);
+void swapp(int *array, size_t size, size_t a, size_t b);
 int lomuto_partition(int *array, int low, int high, size_t size);
 void recursive_partition(int *array, int low, int high, size_t size);
 void quick_sort(int *array, size_t size);
